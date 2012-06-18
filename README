@@ -1,12 +1,28 @@
-Operaciones disponibles:
-1.-Eliminacion Gaussiana
-2.-Eliminacion Gaussiana con Pivoteo Parcial
-3.-Eliminacion Gaussiana con Pivoteo Parcial Escalado
-4.-Descomposicion L.U.
-5.-Jacobi
-6.-Gauss-Seidel
-7.-SOR
-8.-Metodo de Diferencias Divididas
-9.-Metodo de Neville
-10.-Metodo de Hermite
-11.-Metodo de Lagrange
+ESPAÑOL
+	Operaciones disponibles:
+		1.-Eliminacion Gaussiana
+		2.-Eliminacion Gaussiana con Pivoteo Parcial
+		3.-Eliminacion Gaussiana con Pivoteo Parcial Escalado
+		4.-Descomposicion L.U.
+		5.-Jacobi
+		6.-Gauss-Seidel
+		7.-SOR
+		8.-Metodo de Diferencias Divididas
+		9.-Metodo de Neville
+		10.-Metodo de Hermite
+		11.-Metodo de Lagrange
+################################
+ENGLISH
+	Available operations:
+		1.-Gaussian elimination
+		2.-Gaussian elimination (partial pivoting)
+		3.-Eliminacion Gaussiana (scalated partial pivoting)
+		4.-LU decomposition
+		5.-Jacobi method
+		6.-Gauss–Seidel method
+		7.-Successive over-relaxation
+		8.-Divided differences
+		9.-Neville's algorithm
+		10.-Hermite interpolation
+		11.-Lagrange polynomial
+		
