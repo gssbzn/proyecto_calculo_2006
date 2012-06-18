@@ -14,14 +14,99 @@ bool cargaMatriz2(matriz *);
 int main()
 {
 	int o;
+	float tol, w;
 	double x;
+	double *xi;
 	matriz Q, Xi;
+	matriz A, b;
 	system("clear");
 	do{
 		o=menu();
 		
 		switch(o){
 			case 1:
+				cout<<"Eliminacion Gaussiana\n\n";
+				cargaMatriz2(&A);
+				x=new double[A.getN()];
+				if(A.eliGauss(x)){
+					for(int i=0; i<A.getN(); i++)
+						cout<<"X["<<i<<"]= "<<xi[i]<<" ";
+				}
+				else
+					cout<<"Error\n\n";
+				free(x);
+			break;
+			case 2:
+				cargaMatriz2(&A);
+				cout<<"Eliminacion Gaussiana con Pivoteo Parcial\n\n";
+				
+				x=new double[A.getN()];
+				if(A.eliGaussPivotPar(x)){
+					for(int i=0; i<A.getN(); i++)
+						cout<<"X["<<i<<"]= "<<xi[i]<<" ";
+				}
+				else
+					cout<<"Error\n\n";
+				free(x);
+			break;
+			case 3:
+				cout<<"Eliminacion Gaussiana con Pivoteo Parcial Escalado\n\n";
+				cargaMatriz2(&A);
+			
+				x=new double[A.getN()];
+				if(A.eliGaussPivotParEsc(x)){
+					for(int i=0; i<A.getN(); i++)
+						cout<<"X["<<i<<"]= "<<xi[i]<<" ";
+				}
+				else
+					cout<<"Error\n\n";
+				free(x);
+			break;
+			case 4:
+				cargaMatriz(&A, &b);
+				cout<<"Factorizacion LU\n\n";
+				A.factLU(&b);
+			break;
+			case 5:
+				cargaMatriz(&A, &b);
+				cout<<"Jacobi\n\n";
+				cout<<"Numero de iteraciones:  ";
+				cin>>N;
+				cout<<"Tolerancia: ";
+				cin>>tol;
+			
+				x=new double[A.getN()];
+				A.jacobi(&b, x, N, tol);
+				for(int i=0; i<A.getN(); i++)
+					cout<<"X["<<i<<"]= "<<xi[i]<<" ";
+				free(x);
+			break;
+			case 6:
+				cargaMatriz(&A, &b);
+				cout<<"Gauss-Seidel\n\n";
+				cout<<"Numero de iteraciones: ";
+				cin>>N;
+				cout<<"Tolerancia: ";
+				cin>>tol;
+			
+				x=new double[A.getN()];
+				A.gaussSeidel(&b, x, N, tol);
+				for(int i=0; i<A.getN(); i++)
+					cout<<"X["<<i<<"]= "<<xi[i]<<" ";
+				free(x);
+			break;
+			case 7:
+				cargaMatriz2(&A);
+				cout<<"SOR\n\n";
+				cout<<"Numero de iteraciones: ";
+				cin>>N;
+				cout<<"Tolerancia: ";
+				cin>>tol;
+				cout<<"W: ";
+				cin>>w;
+				A.sor(N,tol,w);
+			break;
+			case 8:
 				cout<<"Metodo de Diferencias Divididas\n\n";
 				if(cargaMatriz(&Xi, &Q)){
 					Q.diferenciasDivididas(&Xi);
@@ -30,7 +115,7 @@ int main()
 				else
 					cerr << "\n\n\n***ERROR*** No se ha podido encontrar el archivo\n\b";
 			break;
-			case 2:
+			case 9:
 				cout<<"Metodo de Neville\n\n";
 				if(cargaMatriz(&Xi, &Q)){
 					cout<<"Introduzca el valor de x para el cual\naproximar f(x): ";
@@ -41,7 +126,7 @@ int main()
 				else
 					cerr << "\n\n\n***ERROR*** No se ha podido encontrar el archivo\n\b";
 			break;
-			case 3:
+			case 10:
 				cout<<"Metodo de Hermite\n\n";
 				if(cargaMatriz2(&Xi)){
 					Q.crear(2*Xi.getN(), 2*Xi.getN());
@@ -51,7 +136,7 @@ int main()
 				else
 					cerr << "\n\n\n***ERROR*** No se ha podido encontrar el archivo\n\b";
 			break;
-			case 4:
+			case 11:
 				cout<<"Metodo de Lagrange\n\n";
 				if(cargaMatriz(&Q, &Xi)){
 					cout<<"Introduzca el valor de x para el cual\naproximar f(x): ";
@@ -62,7 +147,7 @@ int main()
 					cerr << "\n\n\n***ERROR*** No se ha podido encontrar el archivo\n\b";
 			break;
 		
-			case 5:
+			case 0:
 				cout<<endl<<"Adios"<<endl;
 			break;
 			default: cerr<<"opcion erronea\n\n"; break;
@@ -78,12 +163,19 @@ int menu()
 {
 	char res[20];
 	cout<<"\n\nEscoja el metodo para la solucion del sistema\n\n\n";
-	cout<<"1.-Metodo de Diferencias Divididas\n";
-	cout<<"2.-Metodo de Neville\n";
-	cout<<"3.-Metodo de Hermite\n";
-	cout<<"4.-Metodo de Lagrange\n\n";
+	cout<<"1.-Eliminacion Gaussiana\n";
+	cout<<"2.-Eliminacion Gaussiana con Pivoteo Parcial\n";
+	cout<<"3.-Eliminacion Gaussiana con Pivoteo Parcial Escalado\n";
+	cout<<"4.-Descomposicion L.U.\n";
+	cout<<"5.-Jacobi\n";
+	cout<<"6.-Gauss-Seidel\n";
+	cout<<"7.-SOR\n\n";
+	cout<<"8.-Metodo de Diferencias Divididas\n";
+	cout<<"9.-Metodo de Neville\n";
+	cout<<"10.-Metodo de Hermite\n";
+	cout<<"11.-Metodo de Lagrange\n\n";
 
-	cout<<"5.-Salir\n";
+	cout<<"0.-Salir\n";
 	cin>>res;
 	system("clear");
 
