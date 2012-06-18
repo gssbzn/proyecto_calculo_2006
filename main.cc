@@ -169,7 +169,7 @@ int menu()
 	cout<<"4.-Descomposicion L.U.\n";
 	cout<<"5.-Jacobi\n";
 	cout<<"6.-Gauss-Seidel\n";
-	cout<<"7.-SOR\n\n";
+	cout<<"7.-SOR\n";
 	cout<<"8.-Metodo de Diferencias Divididas\n";
 	cout<<"9.-Metodo de Neville\n";
 	cout<<"10.-Metodo de Hermite\n";
